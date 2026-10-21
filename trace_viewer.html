@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<title>Local SDK trace viewer</title>
+<style>
+  body { font: 16px system-ui, sans-serif; max-width: 1050px; margin: 2rem auto; padding: 0 1rem; color: #17212b; }
+  header { border-bottom: 2px solid #1f6f8b; margin-bottom: 1.5rem; }
+  label { display: block; margin: 1rem 0; }
+  article { border: 1px solid #bdcbd3; border-radius: 8px; padding: 1rem; margin: 1rem 0; }
+  li { padding: .35rem 0; }
+  code { overflow-wrap: anywhere; }
+  .blocked { color: #9b2525; font-weight: bold; }
+  .ok { color: #17643c; }
+  small { color: #455866; }
+</style>
+<header><h1>Local OpenAI Agents SDK traces</h1><p>Reads a JSONL file in this browser. No upload or hosted tracing is involved.</p></header>
+<label>Choose a local trace file: <input id="file" type="file" accept=".jsonl,.txt"></label>
+<p id="status">No file loaded.</p>
+<main id="traces"></main>
+<script>
+const file = document.querySelector('#file');
+const status = document.querySelector('#status');
+const target = document.querySelector('#traces');
+function node(tag, text, className) {
+  const el = document.createElement(tag);
+  el.textContent = text;
+  if (className) el.className = className;
+  return el;
+}
+file.addEventListener('change', async () => {
+  target.replaceChildren();
+  if (!file.files[0]) return;
+  try {
+    const lines = (await file.files[0].text()).split(/\r?\n/).filter(Boolean);
+    const events = lines.map((line, index) => {
+      try { return JSON.parse(line); }
+      catch { throw new Error(`Invalid JSON on line ${index + 1}`); }
+    });
+    const traces = new Map();
+    for (const event of events) {
+      const data = event.data || {};
+      const id = data.trace_id || (event.event.startsWith('trace_') ? data.id : null);
+      if (!id) continue;
+      if (!traces.has(id)) traces.set(id, []);
+      traces.get(id).push(event);
+    }
+    status.textContent = `${traces.size} trace(s) loaded from ${file.files[0].name}.`;
+    for (const [id, entries] of traces) {
+      const article = node('article', '');
+      article.append(node('h2', id));
+      const meta = entries.find(e => e.event === 'trace_start')?.data?.metadata;
+      if (meta) article.append(node('small', `Mode: ${meta.mode || 'unknown'}`));
+      const list = node('ol', '');
+      for (const entry of entries.filter(e => e.event === 'span_end')) {
+        const span = entry.data.span_data || {};
+        let description = `${span.type}: ${span.name || ''}`;
+        if (span.type === 'handoff') description = `Handoff: ${span.from_agent} → ${span.to_agent}`;
+        if (span.type === 'function') description = `Tool call: ${span.name}`;
+        if (span.type === 'guardrail') description = `Guardrail: ${span.name} (${span.triggered ? 'blocked' : 'passed'})`;
+        if (span.name === 'guardrail_block') description = `Blocked: ${span.data?.kind || 'guardrail'}`;
+        if (span.name === 'validated_final_response') description = `Final response (${span.data?.agent}): ${span.data?.answer}`;
+        list.append(node('li', description, span.triggered || span.name === 'guardrail_block' ? 'blocked' : 'ok'));
+      }
+      article.append(list);
+      target.append(article);
+    }
+  } catch (error) {
+    status.textContent = error.message;
+  }
+});
+</script>
+</html>
