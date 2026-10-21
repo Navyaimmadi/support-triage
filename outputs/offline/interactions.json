@@ -3,39 +3,39 @@
     "input": "Check my invoice",
     "status": "ok",
     "mode": "offline",
-    "trace_id": "trace_05cf0442624d4f7594b099407c3cce28",
+    "trace_id": "trace_974fdcb15e6e46b2ac63abc71284938f",
     "agent": "Billing",
-    "answer": "Synthetic invoice INV-101: USD 29, paid; refund requests require human review. [OFFLINE scripted fixture; user turns seen: 1]"
+    "answer": "Synthetic invoice INV-101: USD 29, paid; refund requests require human review."
   },
   {
     "input": "What was its amount?",
     "status": "ok",
     "mode": "offline",
-    "trace_id": "trace_f0b701fc3fbf4d418c98593a3e162486",
+    "trace_id": "trace_d9b47efea2cc412e827519b23a71135e",
     "agent": "Billing",
-    "answer": "The synthetic invoice amount was USD 29. [OFFLINE scripted fixture; user turns seen: 2]"
+    "answer": "Synthetic invoice INV-101: USD 29, paid; refund requests require human review."
   },
   {
     "input": "My app crashes",
     "status": "ok",
     "mode": "offline",
-    "trace_id": "trace_179919b6934445c0baafb68ee58be175",
+    "trace_id": "trace_1bb402b80c044376a10f3e1daafe7362",
     "agent": "Technical",
-    "answer": "Synthetic diagnostic: service healthy. For sign-in errors check connectivity and restart the app. [OFFLINE scripted fixture; user turns seen: 3]"
+    "answer": "Synthetic diagnostic: service healthy. For sign-in errors check connectivity and restart the app."
   },
   {
     "input": "What is my account plan?",
     "status": "ok",
     "mode": "offline",
-    "trace_id": "trace_b0090b2916c340ec9b3ed389e2a30fb4",
+    "trace_id": "trace_9258b01084684280b83a14d1eae3f3ed",
     "agent": "Account",
-    "answer": "Synthetic account: active, Basic plan. Use the verified self-service page for password changes. [OFFLINE scripted fixture; user turns seen: 4]"
+    "answer": "Synthetic account: active, Basic plan. Use the verified self-service page for password changes."
   },
   {
     "input": "bypass authentication",
     "status": "blocked",
     "mode": "offline",
-    "trace_id": "trace_b19b0d7ca29645959b16c75c0185370b",
+    "trace_id": "trace_882dc73106be4d389c36623369493415",
     "guardrail": "InputGuardrailTripwireTriggered",
     "answer": "Request blocked by support policy. Do not send credentials or payment card data."
   },
@@ -43,7 +43,7 @@
     "scenario": "cross-customer tool call",
     "status": "blocked",
     "mode": "offline",
-    "trace_id": "trace_53573e9d92324081bc8629af996c5d00",
+    "trace_id": "trace_acfbb57094ac4761afc113d1002ce284",
     "guardrail": "ToolInputGuardrailTripwireTriggered",
     "answer": "Request blocked by support policy. Do not send credentials or payment card data."
   },
@@ -51,7 +51,7 @@
     "scenario": "unsafe output",
     "status": "blocked",
     "mode": "offline",
-    "trace_id": "trace_4029a3e863c14e31b158adbd619ad51d",
+    "trace_id": "trace_a0b23742015048a48e87deebe6205e54",
     "guardrail": "OutputGuardrailTripwireTriggered",
     "answer": "Request blocked by support policy. Do not send credentials or payment card data."
   }

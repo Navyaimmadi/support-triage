@@ -2,7 +2,7 @@
 
 Course lab built with the OpenAI Agents SDK. A Router hands customer requests to Billing, Technical, or Account specialists. Each specialist calls a read-only synthetic lookup. Input, output, and tool guardrails protect the workflow; SQLite keeps conversation history; a local SDK tracing processor records handoffs, lookup calls, guardrails, and validated final responses.
 
-**Status:** Offline verification passes. A SharedLLM-mode input guardrail block is captured, but the first provider request failed authentication. Successful live handoffs, a real Responses API workflow, screenshots, and public repository publication remain open submission requirements. No successful live model result is claimed.
+**Status:** Offline verification passes. SharedLLM authentication was repaired by removing the SDK's unnecessary upstream Authorization header. The configured `gpt-oss:120b` model made a real Router-to-Billing handoff and one lookup, but also produced an unsupported invoice answer; later specialist responses without a lookup were blocked. No Billing result is accepted as final submission evidence. Successful live routes, a real Responses API workflow, screenshots, and publication remain open requirements.
 
 ## Setup and offline verification
 
@@ -38,6 +38,8 @@ python triage.py --mode openai-responses --allow-paid --session responses-demo -
 ```
 
 The CLI prints a `trace_id` with each successful or blocked turn. `runtime/<mode>-traces.jsonl` stores local SDK spans; `runtime/conversations.db` stores per-mode, per-session history. Both are git-ignored and may contain conversation text. Open [trace_viewer.html](trace_viewer.html) in a browser and choose a reviewed JSONL file to inspect traces locally. This is a local viewer, not OpenAI hosted tracing. Publish only reviewed, sanitized evidence in `outputs/live`; see [reports/live-verification.md](reports/live-verification.md).
+
+Specialists are configured to call their named lookup tool and return its result as the final answer. An output guardrail blocks any specialist response that skipped its lookup or contains a detected secret. This prevents unsupported invoice facts from being published as an answer if a gateway model ignores the requested tool call.
 
 All records and identities used by the demo are synthetic. The fixed trusted identity demonstrates tool ownership checks, but this CLI is not a production authentication service. No refunds, password changes, or account mutations occur.
 

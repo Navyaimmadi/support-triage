@@ -1,6 +1,6 @@
 # Architecture
 
-Each CLI turn starts at Router with persisted conversation history. Router delegates via SDK handoff to Billing, Technical or Account. Each specialist has one read-only synthetic lookup tool and an output guardrail. The blocking input guardrail runs before model inference. The tool guardrail verifies the customer ID against trusted application context; each tool also checks ownership directly.
+Each CLI turn starts at Router with persisted conversation history. Router delegates via SDK handoff to Billing, Technical or Account. Each specialist has one read-only synthetic lookup tool and an output guardrail. The specialist requests its named tool and, when called, returns the verified lookup result as its final answer. A skipped lookup trips the output guardrail. The blocking input guardrail runs before model inference. The tool guardrail verifies the customer ID against trusted application context; each tool also checks ownership directly.
 
 ```mermaid
 flowchart TD

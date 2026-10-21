@@ -23,5 +23,50 @@
     "guardrail": "InputGuardrailTripwireTriggered",
     "answer": "Request blocked by support policy. Do not send credentials or payment card data.",
     "note": "Blocked locally before model inference."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "error",
+    "error_type": "AuthenticationError",
+    "trace_id": "trace_24d0ce6aaa8040c3afe9efd622e19a6d",
+    "note": "New key, before correction of the SDK Authorization header."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "ok",
+    "trace_id": "trace_be9783051e294c0ebc2f804c46defdb1",
+    "accepted_as_evidence": false,
+    "note": "Handoff without lookup; final answer invented invoice details. Raw answer kept only in ignored runtime data."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "ok",
+    "trace_id": "trace_b416e8a90ea541ecba16b4c7cd798a7b",
+    "accepted_as_evidence": false,
+    "note": "Handoff and billing_lookup ran, but final answer added unsupported details. Raw answer kept only in ignored runtime data."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "blocked",
+    "trace_id": "trace_29a27c1bc44446b783cc7cf567a63f49",
+    "guardrail": "OutputGuardrailTripwireTriggered",
+    "note": "Specialist skipped lookup; blocked by output guardrail."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "blocked",
+    "trace_id": "trace_dcee1a0a5c66485f960e280397946647",
+    "guardrail": "OutputGuardrailTripwireTriggered",
+    "note": "Named tool choice still yielded no lookup; blocked by output guardrail."
   }
 ]
