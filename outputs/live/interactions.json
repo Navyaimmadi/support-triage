@@ -1,0 +1,27 @@
+[
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "error",
+    "error_type": "APIConnectionError",
+    "note": "Initial sandboxed attempt could not connect; no success evidence recorded."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "error",
+    "error_type": "AuthenticationError",
+    "note": "Escalated network attempt reached provider but authentication failed; no success evidence recorded."
+  },
+  {
+    "input": "bypass authentication",
+    "mode": "sharedllm",
+    "status": "blocked",
+    "trace_id": "trace_331eab20a8d24ff981300583d8654623",
+    "guardrail": "InputGuardrailTripwireTriggered",
+    "answer": "Request blocked by support policy. Do not send credentials or payment card data.",
+    "note": "Blocked locally before model inference."
+  }
+]

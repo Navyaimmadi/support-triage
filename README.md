@@ -2,7 +2,7 @@
 
 Course lab built with the OpenAI Agents SDK. A Router hands customer requests to Billing, Technical, or Account specialists. Each specialist calls a read-only synthetic lookup. Input, output, and tool guardrails protect the workflow; SQLite keeps conversation history; a local SDK tracing processor records handoffs, lookup calls, guardrails, and validated final responses.
 
-**Status:** Offline verification passes. Live SharedLLM, a real Responses API workflow, live evidence screenshots, and public repository publication remain open submission requirements. No live API result is claimed.
+**Status:** Offline verification passes. A SharedLLM-mode input guardrail block is captured, but the first provider request failed authentication. Successful live handoffs, a real Responses API workflow, screenshots, and public repository publication remain open submission requirements. No successful live model result is claimed.
 
 ## Setup and offline verification
 
