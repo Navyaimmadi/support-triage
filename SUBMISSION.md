@@ -2,6 +2,6 @@
 
 Multi-Agent Customer Support Triage demonstrates OpenAI Agents SDK handoffs among a Router and three support specialists, input/output/tool guardrails, synthetic read-only lookups, SQLite conversation history, and local SDK traces. The offline fixture and its evidence are labeled as simulation.
 
-Public repository URL: **pending publication**.
+Public repository: [github.com/Navyaimmadi/support-triage](https://github.com/Navyaimmadi/support-triage).
 
-One real SharedLLM Responses API Router clarification is verified with a matching local SDK trace and genuine screenshot. Submission remains pending successful live Billing, Technical, and Account tool-backed routes, a contextual live follow-up, their trace screenshots, and a public GitHub repository URL. See [submission status](SUBMISSION_CHECKLIST.md) and [live verification](reports/live-verification.md).
+One real SharedLLM Responses API Router clarification is verified with a matching local SDK trace and genuine screenshot. Submission remains pending successful live Billing, Technical, and Account tool-backed routes, a contextual live follow-up, and their trace screenshots. See [submission status](SUBMISSION_CHECKLIST.md) and [live verification](reports/live-verification.md).

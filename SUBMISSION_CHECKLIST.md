@@ -1,6 +1,6 @@
 # Submission status
 
-The offline implementation is verified. A real SharedLLM-mode input guardrail block and a successful Responses API Router clarification are captured with genuine local trace screenshots. `gpt-oss:120b` made a Router-to-Billing handoff and `billing_lookup` in one live run, but added unsupported invoice facts; later no-lookup answers were blocked. An approved `glm-5.3-flash` attempt returned an upstream 401, and an approved `kimi-k2.6` Billing check failed authentication before handoff. This project is **not yet submission-ready** because accepted live specialist results, their screenshots, and a public repository URL are missing.
+The offline implementation is verified. A real SharedLLM-mode input guardrail block and a successful Responses API Router clarification are captured with genuine local trace screenshots. `gpt-oss:120b` made a Router-to-Billing handoff and `billing_lookup` in one live run, but added unsupported invoice facts; later no-lookup answers were blocked. Approved `glm-5.3-flash`, `kimi-k2.6`, and `kimi-k2.7-code` checks failed authentication. This project is **not yet submission-ready** because accepted live specialist results and their screenshots are missing.
 
 | Requirement | Current evidence | Status |
 |---|---|---|
@@ -12,6 +12,6 @@ The offline implementation is verified. A real SharedLLM-mode input guardrail bl
 | Routing, handoff, tool, guardrail, final traces | Local SDK JSONL and trace IDs; live input block and rejected Billing attempts | Offline verified; accepted full live trace pending |
 | Source, architecture, design, samples | Repository files and offline samples | Prepared |
 | Genuine live screenshots | `screenshots/responses-router.png`, `screenshots/input-guardrail.png` from local SDK trace viewer | Partial; specialist handoff/tool/final screenshots pending |
-| Public GitHub repository | No repository or remote exists in this folder | Pending publication approval |
+| Public GitHub repository | [github.com/Navyaimmadi/support-triage](https://github.com/Navyaimmadi/support-triage), branch `main` | Published; local branch tracks `origin/main` |
 
-Before submission, complete the specialist live plan in [reports/live-verification.md](reports/live-verification.md), review and publish sanitized specialist evidence and screenshots, and publish a reviewed public GitHub repository. Chat Completions and the offline fixture do not meet the Responses requirement; the successful Router clarification uses the real Responses API.
+Before submission, complete the specialist live plan in [reports/live-verification.md](reports/live-verification.md) and publish sanitized specialist evidence and screenshots to the repository. Chat Completions and the offline fixture do not meet the Responses requirement; the successful Router clarification uses the real Responses API.

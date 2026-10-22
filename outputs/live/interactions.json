@@ -114,5 +114,14 @@
     "trace_id": "trace_ed7d8a9e195a49cb9c23174602daac0e",
     "guardrail": "OutputGuardrailTripwireTriggered",
     "note": "A later single Billing check using tool_choice=required reached Billing via SDK handoff, but the model again skipped its only lookup. No accepted answer. The ineffective setting was reverted."
+  },
+  {
+    "input": "Please check my invoice",
+    "mode": "sharedllm",
+    "model": "kimi-k2.7-code",
+    "status": "error",
+    "error_type": "AuthenticationError",
+    "trace_id": "trace_5287c7ddfc244fd58f63e0ea3c26da85",
+    "note": "One user-authorized Billing check failed during Router generation, before handoff or lookup. No subsequent calls were made."
   }
 ]
