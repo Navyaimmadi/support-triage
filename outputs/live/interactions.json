@@ -123,5 +123,14 @@
     "error_type": "AuthenticationError",
     "trace_id": "trace_5287c7ddfc244fd58f63e0ea3c26da85",
     "note": "One user-authorized Billing check failed during Router generation, before handoff or lookup. No subsequent calls were made."
+  },
+  {
+    "input": "Please check my invoice",
+    "mode": "sharedllm",
+    "model": "~z-ai/glm-flash-latest",
+    "status": "error",
+    "error_type": "APIConnectionError",
+    "trace_id": "trace_9a38cc3a11f640bba1d6a0a9b66e78f9",
+    "note": "One user-selected custom-model Billing check failed before an HTTP response, handoff, or lookup. No automatic retry was made."
   }
 ]

@@ -1,6 +1,6 @@
 # Submission status
 
-The offline implementation is verified. A real SharedLLM-mode input guardrail block and a successful Responses API Router clarification are captured with genuine local trace screenshots. `gpt-oss:120b` made a Router-to-Billing handoff and `billing_lookup` in one live run, but added unsupported invoice facts; later no-lookup answers were blocked. Approved `glm-5.3-flash`, `kimi-k2.6`, and `kimi-k2.7-code` checks failed authentication. This project is **not yet submission-ready** because accepted live specialist results and their screenshots are missing.
+The offline implementation is verified. A real SharedLLM-mode input guardrail block and a successful Responses API Router clarification are captured with genuine local trace screenshots. `gpt-oss:120b` made a Router-to-Billing handoff and `billing_lookup` in one live run, but added unsupported invoice facts; later no-lookup answers were blocked. `glm-5.3-flash`, `kimi-k2.6`, and `kimi-k2.7-code` checks failed authentication; `~z-ai/glm-flash-latest` returned an API connection error. This project is **not yet submission-ready** because accepted live specialist results and their screenshots are missing.
 
 | Requirement | Current evidence | Status |
 |---|---|---|
