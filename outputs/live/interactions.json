@@ -104,6 +104,15 @@
     "status": "error",
     "error_type": "AuthenticationError",
     "trace_id": "trace_72a95090b84a4571abeb3a5418c77434",
-    "note": "The single approved Kimi Billing check failed during Router generation, before any handoff or lookup. User-provided SharedLLM Usage & Billing record shows Ollama Cloud HTTP 401, 270 tokens and $0.0003 at 7:17:19 PM. No subsequent specialist calls were made."
+    "note": "The single approved Kimi Billing check failed during Router generation, before any handoff or lookup. User-provided SharedLLM Usage & Billing record shows Ollama Cloud HTTP 401, 270 tokens and $0.0003 at 7:17:19 PM. No subsequent specialist calls were made under the conditional Kimi plan."
+  },
+  {
+    "input": "Please check my invoice",
+    "mode": "sharedllm",
+    "model": "gpt-oss:120b",
+    "status": "blocked",
+    "trace_id": "trace_ed7d8a9e195a49cb9c23174602daac0e",
+    "guardrail": "OutputGuardrailTripwireTriggered",
+    "note": "A later single Billing check using tool_choice=required reached Billing via SDK handoff, but the model again skipped its only lookup. No accepted answer. The ineffective setting was reverted."
   }
 ]
