@@ -96,5 +96,14 @@
     "agent": "Router",
     "answer": "Sure! Could you let me know which area you need help with?\n\n- Billing (invoices, charges, refunds)  \n- Technical (app errors or issues)  \n- Account (profile, plan, password, or other account‑related matters)",
     "note": "Successful real Responses API Router clarification; no specialist handoff or lookup in this turn."
+  },
+  {
+    "input": "Please check my invoice",
+    "mode": "sharedllm",
+    "model": "kimi-k2.6",
+    "status": "error",
+    "error_type": "AuthenticationError",
+    "trace_id": "trace_72a95090b84a4571abeb3a5418c77434",
+    "note": "The single approved Kimi Billing check failed during Router generation, before any handoff or lookup. No subsequent specialist calls were made."
   }
 ]
