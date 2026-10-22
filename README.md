@@ -2,7 +2,7 @@
 
 Course lab built with the OpenAI Agents SDK. A Router hands customer requests to Billing, Technical, or Account specialists. Each specialist calls a read-only synthetic lookup. Input, output, and tool guardrails protect the workflow; SQLite keeps conversation history; a local SDK tracing processor records handoffs, lookup calls, guardrails, and validated final responses.
 
-**Status:** Offline verification passes. SharedLLM authentication was repaired by removing the SDK's unnecessary upstream Authorization header. The configured `gpt-oss:120b` model made a real Router-to-Billing handoff and one lookup, but also produced an unsupported invoice answer; later specialist responses without a lookup were blocked. No Billing result is accepted as final submission evidence. Successful live routes, a real Responses API workflow, screenshots, and publication remain open requirements.
+**Status:** Offline verification passes. SharedLLM authentication was repaired by removing the SDK's unnecessary upstream Authorization header. `gpt-oss:120b` made a real Router-to-Billing handoff and one lookup, but also produced an unsupported invoice answer; later no-lookup answers were blocked. An approved `glm-5.3-flash` Billing attempt returned `AuthenticationError`. No Billing result is accepted as final submission evidence. Successful live routes, a real Responses API workflow, screenshots, and publication remain open requirements.
 
 ## Setup and offline verification
 

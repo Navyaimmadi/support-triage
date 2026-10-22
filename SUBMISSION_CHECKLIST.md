@@ -1,6 +1,6 @@
 # Submission status
 
-The offline implementation is verified. A real SharedLLM-mode input guardrail block is captured. Authentication now works, and a Router-to-Billing handoff and `billing_lookup` occurred in one live run, but the model added unsupported invoice facts; later no-lookup answers were blocked. This project is **not yet submission-ready** because accepted live specialist results, a real Responses API workflow, screenshots, and a public repository URL are missing.
+The offline implementation is verified. A real SharedLLM-mode input guardrail block is captured. `gpt-oss:120b` authenticated and made a Router-to-Billing handoff and `billing_lookup` in one live run, but added unsupported invoice facts; later no-lookup answers were blocked. An approved `glm-5.3-flash` attempt returned `AuthenticationError`. This project is **not yet submission-ready** because accepted live specialist results, a real Responses API workflow, screenshots, and a public repository URL are missing.
 
 | Requirement | Current evidence | Status |
 |---|---|---|

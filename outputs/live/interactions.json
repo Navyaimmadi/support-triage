@@ -68,5 +68,14 @@
     "trace_id": "trace_dcee1a0a5c66485f960e280397946647",
     "guardrail": "OutputGuardrailTripwireTriggered",
     "note": "Named tool choice still yielded no lookup; blocked by output guardrail."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm",
+    "model": "glm-5.3-flash",
+    "status": "error",
+    "error_type": "AuthenticationError",
+    "trace_id": "trace_ecc1de86ffac4d719736c7bb31e59758",
+    "note": "First approved glm-5.3-flash attempt failed before handoff; no success evidence recorded."
   }
 ]
