@@ -3,7 +3,10 @@ import json
 import httpx2
 from openai.types.responses import ResponseOutputMessage, ResponseOutputText
 from agents import SQLiteSession, set_trace_processors, OpenAIChatCompletionsModel, OpenAIResponsesModel, ModelResponse, Usage
-from triage import OfflineModel, LocalTrace, run_turn, sensitive, model_for, authorized, Customer, SharedLLMClient, make_agents
+from openai import APIConnectionError
+from triage import (OfflineModel, LocalTrace, run_turn, sensitive, model_for,
+                    authorized, Customer, SharedLLMClient, make_agents,
+                    sharedllm_headers, safe_error_chain)
 
 
 def test_routes_memory_and_spans(tmp_path):
@@ -83,6 +86,9 @@ def test_provider_adapters_and_direct_ownership(monkeypatch):
     assert {agent.model_settings.tool_choice for agent in router.handoffs} == {
         "billing_lookup", "technical_lookup", "account_lookup"
     }
+    capped_router = make_agents(OfflineModel(), max_output_tokens=512)
+    assert capped_router.model_settings.max_tokens == 512
+    assert all(agent.model_settings.max_tokens == 512 for agent in capped_router.handoffs)
     context = type("Context", (), {"context": Customer()})()
     authorized(context, "demo-001")
     try:
@@ -118,6 +124,66 @@ def test_sharedllm_request_uses_gateway_header_only():
         assert captured == {"gateway": "synthetic-test-key", "authorization": None}
 
     asyncio.run(check())
+
+
+def test_custom_sharedllm_route_uses_identity_encoding():
+    async def check():
+        captured = {}
+        base_url = "https://api.sharedllm.invalid/custom-openai/v1"
+
+        def handler(request):
+            captured["accept_encoding"] = request.headers.get("Accept-Encoding")
+            captured["authorization"] = request.headers.get("Authorization")
+            return httpx2.Response(200, json={
+                "id": "synthetic-response", "object": "chat.completion", "created": 0,
+                "model": "synthetic-model", "choices": [{"index": 0,
+                "message": {"role": "assistant", "content": "ok"}, "finish_reason": "stop"}],
+            })
+
+        async with httpx2.AsyncClient(transport=httpx2.MockTransport(handler)) as transport:
+            client = SharedLLMClient(
+                api_key="unused", base_url=base_url,
+                default_headers=sharedllm_headers(base_url, "synthetic-test-key"),
+                http_client=transport,
+            )
+            await client.chat.completions.create(
+                model="synthetic-model", messages=[{"role": "user", "content": "hello"}]
+            )
+        assert captured == {"accept_encoding": "identity", "authorization": None}
+
+    asyncio.run(check())
+
+
+def test_error_chain_diagnostics_include_causes_without_secrets():
+    request = httpx2.Request(
+        "POST",
+        "https://private-user:private-pass@api.sharedllm.com/custom-openai/v1/chat/completions?token=private-query",
+    )
+    try:
+        try:
+            raise RuntimeError("outer private context")
+        except RuntimeError as context:
+            try:
+                raise httpx2.DecodingError(
+                    "decode failed for https://api.sharedllm.com/path?api_key=sk-sharedllm-UNITTESTSECRET"
+                )
+            except httpx2.DecodingError as cause:
+                error = APIConnectionError(message="Error getting response", request=request)
+                error.__cause__ = cause
+                error.__context__ = context
+                raise error
+    except APIConnectionError as exc:
+        diagnostic = safe_error_chain(exc)
+
+    serialized = json.dumps(diagnostic)
+    assert [item["exception"] for item in diagnostic] == [
+        "APIConnectionError", "DecodingError", "RuntimeError"
+    ]
+    assert diagnostic[0]["hostname"] == "api.sharedllm.com"
+    assert diagnostic[0]["path"] == "/custom-openai/v1/chat/completions"
+    assert "decode failed" in serialized
+    for private_value in ("private-user", "private-pass", "private-query", "UNITTESTSECRET"):
+        assert private_value not in serialized
 
 
 def test_specialist_cannot_answer_without_lookup(tmp_path):

@@ -1,17 +1,17 @@
 # Submission status
 
-The offline implementation is verified. A real SharedLLM-mode input guardrail block and a successful Responses API Router clarification are captured with genuine local trace screenshots. `gpt-oss:120b` made a Router-to-Billing handoff and `billing_lookup` in one live run, but added unsupported invoice facts; later no-lookup answers were blocked. `glm-5.3-flash`, `kimi-k2.6`, and `kimi-k2.7-code` checks failed authentication; `~z-ai/glm-flash-latest` returned an API connection error. This project is **not yet submission-ready** because accepted live specialist results and their screenshots are missing.
+**Status: ready against the explicit lab requirements available in this workspace.** The offline implementation and approved live workflows are verified. SharedLLM `~z-ai/glm-flash-latest` completed Billing, Technical, and Account handoffs and lookups with grounded final responses. The Billing follow-up used the same persisted SQLite session and answered from the prior lookup; it did not make another handoff or lookup. A real Responses API Router clarification and a live input-guardrail block are also captured. The course PDF was not present in the workspace, so confirm any course-specific requirements not represented below if that brief is available.
 
 | Requirement | Current evidence | Status |
 |---|---|---|
-| Router, Billing, Technical, Account | `triage.py`, offline route tests | Implemented; live routes unverified |
-| Actual SDK handoffs | Offline SDK spans; live Router-to-Billing span recorded in ignored runtime trace | Offline verified; live handoff observed, accepted live sample pending |
-| Input, output, tool guardrails | Offline tests and three blocked demo scenarios; real SharedLLM-mode input block trace | Offline verified; live input block captured |
-| Persistent state and contextual follow-up | SQLite reopen/isolation tests; invoice amount follow-up | Offline verified; live follow-up pending |
+| Router, Billing, Technical, Account | `triage.py`, offline route tests, three accepted live route traces | Implemented and live verified |
+| Actual SDK handoffs | Offline spans and Billing, Technical, Account live handoff traces | Verified offline and live |
+| Input, output, tool guardrails | Offline tests and blocked scenarios; real SharedLLM-mode input block trace | Verified; live input block captured |
+| Persistent state and contextual follow-up | SQLite reopen/isolation tests; live invoice amount follow-up in same session | Verified; follow-up uses prior persisted lookup, no new tool call |
 | Real Responses API workflow | Successful SharedLLM Router clarification; `outputs/live/responses-success-trace.jsonl` and screenshot | Verified for Router clarification; specialist Responses turn blocked on missing lookup |
-| Routing, handoff, tool, guardrail, final traces | Local SDK JSONL and trace IDs; live input block and rejected Billing attempts | Offline verified; accepted full live trace pending |
+| Routing, handoff, tool, guardrail, final traces | Local SDK JSONL and trace IDs; live input block and three accepted specialist traces | Verified offline and live |
 | Source, architecture, design, samples | Repository files and offline samples | Prepared |
-| Genuine live screenshots | `screenshots/responses-router.png`, `screenshots/input-guardrail.png` from local SDK trace viewer | Partial; specialist handoff/tool/final screenshots pending |
+| Genuine live screenshots | Responses Router, input guardrail, Billing, Technical, Account, and Billing follow-up screenshots under `screenshots/` | Captured from local SDK trace viewer |
 | Public GitHub repository | [github.com/Navyaimmadi/support-triage](https://github.com/Navyaimmadi/support-triage), branch `main` | Published; local branch tracks `origin/main` |
 
-Before submission, complete the specialist live plan in [reports/live-verification.md](reports/live-verification.md) and publish sanitized specialist evidence and screenshots to the repository. Chat Completions and the offline fixture do not meet the Responses requirement; the successful Router clarification uses the real Responses API.
+Chat Completions and the offline fixture do not meet the Responses requirement; the successful Router clarification uses the real Responses API. The course PDF was not found in the workspace. Other than checking any additional course-only requirements in that missing file, the explicit lab deliverables are evidenced in this repository.

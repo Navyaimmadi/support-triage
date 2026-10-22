@@ -131,6 +131,80 @@
     "status": "error",
     "error_type": "APIConnectionError",
     "trace_id": "trace_9a38cc3a11f640bba1d6a0a9b66e78f9",
-    "note": "One user-selected custom-model Billing check failed before an HTTP response, handoff, or lookup. No automatic retry was made."
+    "note": "One user-selected custom-model Billing check through the standard endpoint failed before an HTTP response, handoff, or lookup. No automatic retry was made."
+  },
+  {
+    "input": "Please check my invoice",
+    "mode": "sharedllm",
+    "model": "~z-ai/glm-flash-latest",
+    "status": "error",
+    "error_type": "APIConnectionError",
+    "trace_id": "trace_b2226419b2064ec9ad3b407b0a63380f",
+    "note": "One bounded model check failed before an HTTP response; the historic SDK trace redacts the exception cause, so its precise cause cannot be recovered. Separate non-inference checks established custom-route connectivity and showed a compressed GET /models response fails with httpx2.DecodingError; the same GET with Accept-Encoding: identity returned HTTP 200. No model retry was made."
+  },
+  {
+    "input": "Please check my invoice",
+    "mode": "sharedllm",
+    "model": "~z-ai/glm-flash-latest",
+    "status": "ok",
+    "agent": "Billing",
+    "answer": "Synthetic invoice INV-101: USD 29, paid; refund requests require human review.",
+    "trace_id": "trace_c2474a3675d148abaaa1c575bd1f9826",
+    "usage": {
+      "requests": 2,
+      "input_tokens": 606,
+      "output_tokens": 144,
+      "total_tokens": 750
+    },
+    "note": "One approved Billing-only workflow used SharedLLM custom-openai endpoint with identity encoding. SDK trace confirms Router-to-Billing handoff, billing_lookup, and final lookup-derived result. No retries; max 3 model turns and 512 output tokens per request."
+  },
+  {
+    "input": "My app displays an error when I try to sign in.",
+    "mode": "sharedllm",
+    "model": "~z-ai/glm-flash-latest",
+    "status": "ok",
+    "agent": "Technical",
+    "answer": "Synthetic diagnostic: service healthy. For sign-in errors check connectivity and restart the app.",
+    "trace_id": "trace_f6b2e685de394dbcacc0fb99f9caf6d0",
+    "usage": {
+      "requests": 2,
+      "input_tokens": 565,
+      "output_tokens": 92,
+      "total_tokens": 657
+    },
+    "note": "Approved Technical-only workflow; trace confirms Router-to-Technical handoff, technical_lookup and final response. No retries; max 3 turns and 512 output tokens per request."
+  },
+  {
+    "input": "What is my account plan?",
+    "mode": "sharedllm",
+    "model": "~z-ai/glm-flash-latest",
+    "status": "ok",
+    "agent": "Account",
+    "answer": "Synthetic account: active, Basic plan. Use the verified self-service page for password changes.",
+    "trace_id": "trace_0eb7626c070f44a8bf95e4b4e1a48825",
+    "usage": {
+      "requests": 2,
+      "input_tokens": 552,
+      "output_tokens": 66,
+      "total_tokens": 618
+    },
+    "note": "Approved Account-only workflow; trace confirms Router-to-Account handoff, account_lookup and final response. No retries; max 3 turns and 512 output tokens per request."
+  },
+  {
+    "input": "What was its amount?",
+    "mode": "sharedllm",
+    "model": "~z-ai/glm-flash-latest",
+    "status": "ok",
+    "agent": "Router",
+    "answer": "Your invoice INV-101 was for **USD 29.00**, and it has been paid.\n\nNote: if you're looking to request a refund on it, that would require human review — let me know and I can pass that along to Billing.",
+    "trace_id": "trace_6c18b57535284939835843b79104a0af",
+    "usage": {
+      "requests": 1,
+      "input_tokens": 364,
+      "output_tokens": 56,
+      "cached_input_tokens": 256,
+      "total_tokens": 420
+    },
+    "note": "Approved contextual follow-up in the same persisted SQLite session as the Billing lookup. Ten session items include the prior invoice request and lookup amount; the follow-up did not restate invoice details. Router answered from history with no new handoff or lookup span; see report limitation. No retries; max 3 turns and 512 output tokens per request."
   }
 ]
