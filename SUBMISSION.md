@@ -4,4 +4,4 @@ Multi-Agent Customer Support Triage demonstrates OpenAI Agents SDK handoffs amon
 
 Public repository URL: **pending publication**.
 
-Submission is pending a successful real Responses API workflow, authorized live verification, genuine trace screenshots, and a public GitHub repository URL. See [submission status](SUBMISSION_CHECKLIST.md) and [live verification](reports/live-verification.md).
+One real SharedLLM Responses API Router clarification is verified with a matching local SDK trace and genuine screenshot. Submission remains pending successful live Billing, Technical, and Account tool-backed routes, a contextual live follow-up, their trace screenshots, and a public GitHub repository URL. See [submission status](SUBMISSION_CHECKLIST.md) and [live verification](reports/live-verification.md).

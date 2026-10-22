@@ -77,5 +77,24 @@
     "error_type": "AuthenticationError",
     "trace_id": "trace_ecc1de86ffac4d719736c7bb31e59758",
     "note": "First approved glm-5.3-flash attempt failed before handoff; no success evidence recorded."
+  },
+  {
+    "input": "Check my invoice",
+    "mode": "sharedllm-responses",
+    "model": "gpt-oss:120b",
+    "status": "blocked",
+    "trace_id": "trace_3d3c4c3f200a4d838dfe8bf6f7894686",
+    "guardrail": "OutputGuardrailTripwireTriggered",
+    "note": "Two real Responses API spans and Router-to-Billing handoff; specialist skipped lookup, so no accepted final answer."
+  },
+  {
+    "input": "I need support, but I have not said whether this is about billing, an app error, or my account. Please ask me which area it concerns.",
+    "mode": "sharedllm-responses",
+    "model": "gpt-oss:120b",
+    "status": "ok",
+    "trace_id": "trace_b498f85a2608468bbd2ae916bfc6dc6d",
+    "agent": "Router",
+    "answer": "Sure! Could you let me know which area you need help with?\n\n- Billing (invoices, charges, refunds)  \n- Technical (app errors or issues)  \n- Account (profile, plan, password, or other account‑related matters)",
+    "note": "Successful real Responses API Router clarification; no specialist handoff or lookup in this turn."
   }
 ]

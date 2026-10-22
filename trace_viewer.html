@@ -27,11 +27,10 @@ function node(tag, text, className) {
   if (className) el.className = className;
   return el;
 }
-file.addEventListener('change', async () => {
+function render(name, content) {
   target.replaceChildren();
-  if (!file.files[0]) return;
   try {
-    const lines = (await file.files[0].text()).split(/\r?\n/).filter(Boolean);
+    const lines = content.split(/\r?\n/).filter(Boolean);
     const events = lines.map((line, index) => {
       try { return JSON.parse(line); }
       catch { throw new Error(`Invalid JSON on line ${index + 1}`); }
@@ -44,7 +43,7 @@ file.addEventListener('change', async () => {
       if (!traces.has(id)) traces.set(id, []);
       traces.get(id).push(event);
     }
-    status.textContent = `${traces.size} trace(s) loaded from ${file.files[0].name}.`;
+    status.textContent = `${traces.size} trace(s) loaded from ${name}.`;
     for (const [id, entries] of traces) {
       const article = node('article', '');
       article.append(node('h2', id));
@@ -67,6 +66,16 @@ file.addEventListener('change', async () => {
   } catch (error) {
     status.textContent = error.message;
   }
+}
+file.addEventListener('change', async () => {
+  if (file.files[0]) render(file.files[0].name, await file.files[0].text());
 });
+const selected = new URLSearchParams(location.search).get('trace');
+if (selected && /^outputs\/(live|offline)\/[a-z0-9-]+\.jsonl$/.test(selected)) {
+  fetch(selected).then(response => {
+    if (!response.ok) throw new Error(`Could not read ${selected}`);
+    return response.text();
+  }).then(content => render(selected, content)).catch(error => { status.textContent = error.message; });
+}
 </script>
 </html>

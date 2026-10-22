@@ -2,7 +2,7 @@
 
 Course lab built with the OpenAI Agents SDK. A Router hands customer requests to Billing, Technical, or Account specialists. Each specialist calls a read-only synthetic lookup. Input, output, and tool guardrails protect the workflow; SQLite keeps conversation history; a local SDK tracing processor records handoffs, lookup calls, guardrails, and validated final responses.
 
-**Status:** Offline verification passes. SharedLLM authentication was repaired by removing the SDK's unnecessary upstream Authorization header. `gpt-oss:120b` made a real Router-to-Billing handoff and one lookup, but also produced an unsupported invoice answer; later no-lookup answers were blocked. An approved `glm-5.3-flash` Billing attempt returned `AuthenticationError`. No Billing result is accepted as final submission evidence. Successful live routes, a real Responses API workflow, screenshots, and publication remain open requirements.
+**Status:** Offline verification passes. A real SharedLLM Responses API Router clarification succeeded, with a matching SDK trace and screenshot. The specialist routes are still unverified live: `gpt-oss:120b` skipped required lookups on several attempts, and `glm-5.3-flash` returned an upstream 401. No Billing result is accepted as final submission evidence. Successful live specialist routes and public repository publication remain open requirements.
 
 ## Setup and offline verification
 
@@ -30,7 +30,7 @@ python triage.py --mode sharedllm --allow-paid --session course-demo --message "
 python triage.py --mode sharedllm --allow-paid --session course-demo --message "What was its amount?"
 ```
 
-`sharedllm-responses` uses the same gateway and model through the SDK's `OpenAIResponsesModel`; this path has **not** been verified against SharedLLM. The [SharedLLM documentation](https://www.sharedllm.com/docs) currently demonstrates `/chat/completions` and does not establish `/responses` support. A successful real Responses request is required before this mode can count for the lab. The separate `openai-responses` mode uses `OPENAI_API_KEY` and `OPENAI_MODEL`; it can incur separately billed charges and needs separate authorization.
+`sharedllm-responses` uses the same gateway and model through the SDK's `OpenAIResponsesModel`. A real Router clarification completed successfully through this mode; see [its interaction](outputs/live/interactions.json) and [matching trace](outputs/live/responses-success-trace.jsonl). A specialist handoff through Responses was also observed, but its answer was blocked because no lookup occurred. The [SharedLLM documentation](https://www.sharedllm.com/docs) demonstrates `/chat/completions`; the real trace establishes Responses behavior for this configured gateway/model at verification time. The separate `openai-responses` mode uses `OPENAI_API_KEY` and `OPENAI_MODEL`; it can incur separately billed charges and needs separate authorization.
 
 ```bash
 python triage.py --mode sharedllm-responses --allow-paid --session responses-demo --message "Check my invoice"
