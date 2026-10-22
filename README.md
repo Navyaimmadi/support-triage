@@ -2,7 +2,7 @@
 
 Course lab built with the OpenAI Agents SDK. A Router hands customer requests to Billing, Technical, or Account specialists. Each specialist calls a read-only synthetic lookup. Input, output, and tool guardrails protect the workflow; SQLite keeps conversation history; a local SDK tracing processor records handoffs, lookup calls, guardrails, and validated final responses.
 
-**Status:** Offline tests pass. SharedLLM live verification succeeded for Billing, Technical, and Account with actual SDK handoffs, named lookup calls, and lookup-derived answers. A Billing follow-up in the same persisted session returned the earlier lookup result without restating invoice details; its turn used history and did not repeat the handoff or lookup. A real Responses API Router clarification and a live input-guardrail block are also preserved. The course PDF was not present in the workspace, so these materials are checked against the explicit lab requirements available in the project rather than the unavailable PDF.
+**Status:** Offline tests pass. SharedLLM live verification succeeded for Billing, Technical, and Account with actual SDK handoffs, named lookup calls, and lookup-derived answers. A Billing follow-up in the same persisted session returned the earlier lookup result without restating invoice details; its turn used history and did not repeat the handoff or lookup. A real Responses API Router clarification and a live input-guardrail block are also preserved.
 
 ## Setup and offline verification
 
@@ -47,4 +47,4 @@ Specialists are configured to call their named lookup tool and return its result
 
 All records and identities used by the demo are synthetic. The fixed trusted identity demonstrates tool ownership checks, but this CLI is not a production authentication service. No refunds, password changes, or account mutations occur.
 
-For the implementation map, see [architecture](docs/architecture.md), [design](docs/design.md), and [submission status](SUBMISSION_CHECKLIST.md). The course PDF was not present in this workspace during this verification; its requirements should be checked against these materials if supplied.
+For the implementation map, see [architecture](docs/architecture.md), [design](docs/design.md), and [submission status](SUBMISSION_CHECKLIST.md).

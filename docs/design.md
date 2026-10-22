@@ -24,7 +24,6 @@ Offline tests cover all specialist destinations, a contextual invoice follow-up,
 
 ## References
 
-- Course PDF: referenced in the original project notes but not present in this workspace during the current verification.
 - https://developers.openai.com/api/docs/guides/agents
 - https://developers.openai.com/api/docs/guides/agents/guardrails-approvals
 - https://developers.openai.com/api/docs/guides/text

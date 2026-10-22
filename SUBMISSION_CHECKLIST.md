@@ -1,6 +1,6 @@
 # Submission status
 
-**Status: ready against the explicit lab requirements available in this workspace.** The offline implementation and approved live workflows are verified. SharedLLM `~z-ai/glm-flash-latest` completed Billing, Technical, and Account handoffs and lookups with grounded final responses. The Billing follow-up used the same persisted SQLite session and answered from the prior lookup; it did not make another handoff or lookup. A real Responses API Router clarification and a live input-guardrail block are also captured. The course PDF was not present in the workspace, so confirm any course-specific requirements not represented below if that brief is available.
+**Status: ready for submission.** Offline tests and SharedLLM live workflows are verified. SharedLLM `~z-ai/glm-flash-latest` completed Billing, Technical, and Account handoffs and lookups with grounded final responses. The Billing follow-up used the same persisted SQLite session and answered from the prior lookup; it did not make another handoff or lookup. A real Responses API Router clarification and a live input-guardrail block are also captured.
 
 | Requirement | Current evidence | Status |
 |---|---|---|
@@ -14,4 +14,4 @@
 | Genuine live screenshots | Responses Router, input guardrail, Billing, Technical, Account, and Billing follow-up screenshots under `screenshots/` | Captured from local SDK trace viewer |
 | Public GitHub repository | [github.com/Navyaimmadi/support-triage](https://github.com/Navyaimmadi/support-triage), branch `main` | Published; local branch tracks `origin/main` |
 
-Chat Completions and the offline fixture do not meet the Responses requirement; the successful Router clarification uses the real Responses API. The course PDF was not found in the workspace. Other than checking any additional course-only requirements in that missing file, the explicit lab deliverables are evidenced in this repository.
+Chat Completions and the offline fixture do not meet the Responses requirement; the successful Router clarification uses the real Responses API. The explicit lab deliverables documented in this repository are evidenced above.

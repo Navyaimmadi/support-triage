@@ -6,4 +6,4 @@ Verified on 2026-10-22 with Python 3.12. The clean setup resolved `openai-agents
 
 `.venv/bin/python demo.py`: succeeded. It generated [interactions](../outputs/offline/interactions.json) and [traces](../outputs/offline/traces.jsonl), including three blocked scenarios. The fixture's route choice is deterministic and is **not** evidence of live LLM reasoning, SharedLLM compatibility, a Responses request, or API cost. Running the offline demo and tests makes no live model calls.
 
-The default sandbox blocks external DNS. A user-approved installation in the temporary clean environment succeeded after network escalation; the temporary environment was removed after testing.
+The restricted execution environment blocks external DNS. Installation in the temporary clean environment succeeded with network access enabled; the temporary environment was removed after testing.

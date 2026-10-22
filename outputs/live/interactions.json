@@ -5,7 +5,7 @@
     "model": "gpt-oss:120b",
     "status": "error",
     "error_type": "APIConnectionError",
-    "note": "Initial sandboxed attempt could not connect; no success evidence recorded."
+    "note": "DNS resolution failed in the restricted execution environment; no HTTP response or success evidence was recorded."
   },
   {
     "input": "Check my invoice",
@@ -76,7 +76,7 @@
     "status": "error",
     "error_type": "AuthenticationError",
     "trace_id": "trace_ecc1de86ffac4d719736c7bb31e59758",
-    "note": "First approved glm-5.3-flash attempt failed before handoff; no success evidence recorded."
+    "note": "The glm-5.3-flash attempt failed before handoff; no success evidence recorded."
   },
   {
     "input": "Check my invoice",
@@ -104,7 +104,7 @@
     "status": "error",
     "error_type": "AuthenticationError",
     "trace_id": "trace_72a95090b84a4571abeb3a5418c77434",
-    "note": "The single approved Kimi Billing check failed during Router generation, before any handoff or lookup. User-provided SharedLLM Usage & Billing record shows Ollama Cloud HTTP 401, 270 tokens and $0.0003 at 7:17:19 PM. No subsequent specialist calls were made under the conditional Kimi plan."
+    "note": "The Kimi Billing check failed during Router generation, before any handoff or lookup. Recorded SharedLLM dashboard usage shows Ollama Cloud HTTP 401, 270 tokens and $0.0003 at 7:17:19 PM. No subsequent specialist calls were made."
   },
   {
     "input": "Please check my invoice",
@@ -122,7 +122,7 @@
     "status": "error",
     "error_type": "AuthenticationError",
     "trace_id": "trace_5287c7ddfc244fd58f63e0ea3c26da85",
-    "note": "One user-authorized Billing check failed during Router generation, before handoff or lookup. No subsequent calls were made."
+    "note": "The Billing check failed during Router generation, before handoff or lookup. No subsequent calls were made."
   },
   {
     "input": "Please check my invoice",
@@ -131,7 +131,7 @@
     "status": "error",
     "error_type": "APIConnectionError",
     "trace_id": "trace_9a38cc3a11f640bba1d6a0a9b66e78f9",
-    "note": "One user-selected custom-model Billing check through the standard endpoint failed before an HTTP response, handoff, or lookup. No automatic retry was made."
+    "note": "The custom-model Billing check through the standard endpoint failed before an HTTP response, handoff, or lookup. No automatic retry was made."
   },
   {
     "input": "Please check my invoice",
@@ -156,7 +156,7 @@
       "output_tokens": 144,
       "total_tokens": 750
     },
-    "note": "One approved Billing-only workflow used SharedLLM custom-openai endpoint with identity encoding. SDK trace confirms Router-to-Billing handoff, billing_lookup, and final lookup-derived result. No retries; max 3 model turns and 512 output tokens per request."
+    "note": "One Billing workflow used the SharedLLM custom-openai endpoint with identity encoding. The SDK trace confirms Router-to-Billing handoff, billing_lookup, and a final response derived from the lookup. No retries; maximum 3 model turns and 512 output tokens per request."
   },
   {
     "input": "My app displays an error when I try to sign in.",
@@ -172,7 +172,7 @@
       "output_tokens": 92,
       "total_tokens": 657
     },
-    "note": "Approved Technical-only workflow; trace confirms Router-to-Technical handoff, technical_lookup and final response. No retries; max 3 turns and 512 output tokens per request."
+    "note": "The trace confirms Router-to-Technical handoff, technical_lookup, and the final response. No retries; maximum 3 turns and 512 output tokens per request."
   },
   {
     "input": "What is my account plan?",
@@ -188,7 +188,7 @@
       "output_tokens": 66,
       "total_tokens": 618
     },
-    "note": "Approved Account-only workflow; trace confirms Router-to-Account handoff, account_lookup and final response. No retries; max 3 turns and 512 output tokens per request."
+    "note": "The trace confirms Router-to-Account handoff, account_lookup, and the final response. No retries; maximum 3 turns and 512 output tokens per request."
   },
   {
     "input": "What was its amount?",
@@ -205,6 +205,6 @@
       "cached_input_tokens": 256,
       "total_tokens": 420
     },
-    "note": "Approved contextual follow-up in the same persisted SQLite session as the Billing lookup. Ten session items include the prior invoice request and lookup amount; the follow-up did not restate invoice details. Router answered from history with no new handoff or lookup span; see report limitation. No retries; max 3 turns and 512 output tokens per request."
+    "note": "Contextual follow-up in the same persisted SQLite session as the Billing lookup. Ten session items include the prior invoice request and lookup amount; the follow-up did not restate invoice details. Router answered from history with no new handoff or lookup span. No retries; maximum 3 turns and 512 output tokens per request."
   }
 ]
